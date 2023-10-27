@@ -6,12 +6,12 @@
 #    By: asolano- <asolano-@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/02 13:24:24 by asolano-          #+#    #+#              #
-#    Updated: 2023/10/23 09:06:02 by asolano-         ###   ########.fr        #
+#    Updated: 2023/10/26 10:53:05 by asolano-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Executable name
-NAME = brain
+NAME = materia
 
 # Compiler
 CPP = c++
@@ -20,7 +20,7 @@ CPP = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
 # Source files
-SRC = main.cpp Animal.cpp Cat.cpp Dog.cpp WrongCat.cpp WrongAnimal.cpp Brain.cpp
+SRC = main.cpp AMateria.cpp Character.cpp Ice.cpp Cure.cpp MateriaSource.cpp
 
 # Object files
 OBJ = $(SRC:.cpp=.o)
