@@ -6,7 +6,7 @@
 /*   By: asolano- <asolano-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 10:12:28 by asolano-          #+#    #+#             */
-/*   Updated: 2023/10/26 10:54:51 by asolano-         ###   ########.fr       */
+/*   Updated: 2023/10/27 11:21:18 by asolano-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,12 @@ int main()
 	delete bob;
 	delete me;
 	delete src;
+	int i = 0;
+	while (i < Character::size)
+	{
+		delete Character::_unequiped[i];
+		i++;
+	}
+	delete[] Character::_unequiped;
 	return 0;
 }

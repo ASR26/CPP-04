@@ -6,7 +6,7 @@
 /*   By: asolano- <asolano-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 11:32:09 by asolano-          #+#    #+#             */
-/*   Updated: 2023/10/27 10:17:38 by asolano-         ###   ########.fr       */
+/*   Updated: 2023/10/27 10:30:06 by asolano-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ class Character: public ICharacter
 		std::string _name;
 		AMateria	*_inventory[4];
 		int			_equipedMateria;
-		AMateria	*_unequiped[1];
 	public:
 		Character();
 		Character(std::string name);
@@ -36,6 +35,8 @@ class Character: public ICharacter
 		void unequip(int index);
 		void use(int index, ICharacter& target);
 		void discard(AMateria *materia);
+		static int size;
+		static AMateria	**_unequiped; // save unequiped materia here to delete it later (static to share it between every character)
 };
 
 #endif

@@ -6,11 +6,14 @@
 /*   By: asolano- <asolano-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:33:34 by asolano-          #+#    #+#             */
-/*   Updated: 2023/10/26 10:57:00 by asolano-         ###   ########.fr       */
+/*   Updated: 2023/10/27 11:14:23 by asolano-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Character.hpp"
+
+int	Character::size = 0;
+AMateria **Character::_unequiped = NULL;
 
 Character::Character()
 {
@@ -71,13 +74,40 @@ void	Character::equip(AMateria* m)
 
 void Character::unequip(int index)
 {
-	this->_inventory[index] = NULL;
+	if (index < 0 || index > 3)
+		std::cout << "Not a valid index" << std::endl;
+	else
+	{
+		discard(this->_inventory[index]);
+		this->_inventory[index] = NULL;
+	}
 }
 
 void Character::use(int index, ICharacter& target)
 {
-	if (this->_inventory[index])
-		this->_inventory[index]->use(target);
+	if (index < 0 || index > 3)
+		std::cout << "Not a valid index" << std::endl;
 	else
-		std::cout << "No materia equiped in slot " << index << std::endl;
+	{
+		if (this->_inventory[index])
+			this->_inventory[index]->use(target);
+		else
+			std::cout << "No materia equiped in slot " << index << std::endl;
+	}
+}
+
+void Character::discard(AMateria *materia)
+{
+	size++;
+	int i = 0;
+	AMateria** newMat = new AMateria*[size];
+	while (i < size - 1)
+	{
+		newMat[i] = _unequiped[i];
+		i++;
+	}
+	newMat[i] = materia;
+	if (_unequiped != NULL)
+		delete[] _unequiped;
+	_unequiped = newMat;
 }
