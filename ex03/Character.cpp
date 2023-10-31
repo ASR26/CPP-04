@@ -6,7 +6,7 @@
 /*   By: asolano- <asolano-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:33:34 by asolano-          #+#    #+#             */
-/*   Updated: 2023/10/27 11:14:23 by asolano-         ###   ########.fr       */
+/*   Updated: 2023/10/31 08:52:24 by asolano-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	Character::equip(AMateria* m)
 		std::cout << "Materia " << m->getType() << " equiped in slot " << _equipedMateria << std::endl;
 	}
 	else
+		discard(m);
 		std::cout << "Inventory full, cannot equip this materia" << std::endl;
 }
 
