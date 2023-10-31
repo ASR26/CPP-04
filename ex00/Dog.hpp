@@ -6,7 +6,7 @@
 /*   By: asolano- <asolano-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 08:50:44 by asolano-          #+#    #+#             */
-/*   Updated: 2023/10/20 11:25:17 by asolano-         ###   ########.fr       */
+/*   Updated: 2023/10/31 08:31:54 by asolano-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class Dog: public Animal
 		Dog(const Dog &dog);
 		Dog &operator=(const Dog &dog);
 		~Dog();
-		void	makeSound() const;
+		virtual void	makeSound() const;
 };
 
 # endif

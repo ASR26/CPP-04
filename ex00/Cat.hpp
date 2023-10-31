@@ -6,7 +6,7 @@
 /*   By: asolano- <asolano-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 08:50:44 by asolano-          #+#    #+#             */
-/*   Updated: 2023/10/20 11:25:13 by asolano-         ###   ########.fr       */
+/*   Updated: 2023/10/31 08:31:50 by asolano-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class Cat: public Animal
 		Cat(const Cat &cat);
 		Cat &operator=(const Cat &cat);
 		~Cat();
-		void makeSound() const;
+		virtual void makeSound() const;
 };
 
 # endif
