@@ -6,7 +6,7 @@
 /*   By: asolano- <asolano-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 13:39:17 by asolano-          #+#    #+#             */
-/*   Updated: 2023/10/24 11:02:06 by asolano-         ###   ########.fr       */
+/*   Updated: 2023/10/31 08:46:43 by asolano-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,17 @@ int main()
 	for (int i = 0; i < 4; i++)
 		delete animal[i];
 	
+	Cat *cat = new Cat();
+	Cat catcpy(*cat);
+	Cat catequal = *cat;
+
+	delete cat;
+
+	std::cout << std::endl << "Cat ideas: " << std::endl;
+	std::cout << catcpy.getBrain()->getIdeas(0) << std::endl;
+	std::cout << catcpy.getBrain()->getIdeas(1) << std::endl;
+	std::cout << catequal.getBrain()->getIdeas(0) << std::endl;
+	std::cout << catequal.getBrain()->getIdeas(1) << std::endl << std::endl;
+
 	return 0;
 }
