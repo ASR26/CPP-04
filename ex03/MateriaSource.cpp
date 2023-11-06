@@ -6,7 +6,7 @@
 /*   By: asolano- <asolano-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 10:25:43 by asolano-          #+#    #+#             */
-/*   Updated: 2023/10/26 10:37:31 by asolano-         ###   ########.fr       */
+/*   Updated: 2023/11/06 11:35:45 by asolano-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,44 +15,56 @@
 MateriaSource::MateriaSource()
 {
 	std::cout << "Materia Source created" << std::endl;
-	this->_iceLearned = false;
-	this->_cureLearned = false;
+	int i = -1;
+	while (++i < 4)
+		this->materia[i] = NULL;
+	this->_equipedMateria = 0;
 }
 
-MateriaSource::MateriaSource(const MateriaSource &materiasource)
+MateriaSource::MateriaSource(const MateriaSource &src)
 {
 	std::cout << "Materia source copy created" << std::endl;
-	this->_iceLearned = materiasource._iceLearned;
-	this->_cureLearned = materiasource._cureLearned;
+	for (int i = 0; i < 4; i++)
+		this->materia[i] = src.materia[i]->clone();
 }
 
 MateriaSource::~MateriaSource()
 {
 	std::cout << "Materia Source destroyed" << std::endl;
+	int	i = -1;
+
+	while (++i < 4)
+		if (this->materia[i])
+			delete this->materia[i];
 }
 
-MateriaSource &MateriaSource::operator=(const MateriaSource &materiasource)
+MateriaSource &MateriaSource::operator=(const MateriaSource &src)
 {
-	this->_cureLearned = materiasource._cureLearned;
-	this->_iceLearned = materiasource._iceLearned;
+	std::cout << "Character operator called" << std::endl;
+	for (int i = 0; i < this->_equipedMateria; i++)
+	{
+		if (this->materia[i] != NULL)
+			delete this->materia[i];
+		this->materia[i] = src.materia[i]->clone();
+	}
+	this->_equipedMateria = src._equipedMateria;
 	return *this;
 }
 
 void MateriaSource::learnMateria(AMateria *materia)
 {
-	if (materia->getType() == "cure")
-		this->_cureLearned = true;
-	else if (materia->getType() == "ice")
-		this->_iceLearned = true;
+	if (_equipedMateria < 4)
+		this->materia[_equipedMateria] = materia->clone();
 	delete materia;
 }
 
 AMateria* MateriaSource::createMateria(std::string const &type)
 {
-	if (type == "ice" && this->_iceLearned == true)
-		return (new Ice());
-	else if (type == "cure" && this->_cureLearned == true)
-		return (new Cure());
-	else
-		return 0;
+	int i = -1;
+	while (++i < this->_equipedMateria)
+	{
+		if (this->materia[i]->getType() == type)
+			return (this->materia[i]->clone());
+	}
+	return (NULL);
 }
