@@ -6,7 +6,7 @@
 /*   By: asolano- <asolano-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 10:25:43 by asolano-          #+#    #+#             */
-/*   Updated: 2023/11/06 11:35:45 by asolano-         ###   ########.fr       */
+/*   Updated: 2023/11/07 10:15:35 by asolano-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,12 @@ MateriaSource::~MateriaSource()
 MateriaSource &MateriaSource::operator=(const MateriaSource &src)
 {
 	std::cout << "Character operator called" << std::endl;
-	for (int i = 0; i < this->_equipedMateria; i++)
+	for (int i = 0; i < 4; i++)
 	{
 		if (this->materia[i] != NULL)
 			delete this->materia[i];
-		this->materia[i] = src.materia[i]->clone();
+		if (src.materia[i])
+			this->materia[i] = src.materia[i]->clone();
 	}
 	this->_equipedMateria = src._equipedMateria;
 	return *this;
@@ -54,7 +55,10 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &src)
 void MateriaSource::learnMateria(AMateria *materia)
 {
 	if (_equipedMateria < 4)
+	{
 		this->materia[_equipedMateria] = materia->clone();
+		this->_equipedMateria++;
+	}
 	delete materia;
 }
 

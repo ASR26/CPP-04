@@ -6,7 +6,7 @@
 /*   By: asolano- <asolano-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:33:34 by asolano-          #+#    #+#             */
-/*   Updated: 2023/11/06 12:01:48 by asolano-         ###   ########.fr       */
+/*   Updated: 2023/11/07 10:14:53 by asolano-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,22 @@ Character::Character(const Character &character)
 Character::~Character()
 {
 	std::cout << "Character destroyed" << std::endl;
-	for (int i = 0; i < _equipedMateria; i++)
-		delete this->_inventory[i];
+	for (int i = 0; i < 4; i++)
+		if (this->_inventory[i] != NULL)
+			delete this->_inventory[i];
 }
 
 Character &Character::operator=(const Character &character)
 {
 	std::cout << "Character operator called" << std::endl;
 	this->_name = character.getName();
-	for (int i = 0; i < this->_equipedMateria; i++)
-		this->_inventory[i] = character._inventory[i]->clone();
+	for (int i = 0; i < 4; i++)
+	{
+		if (this->_inventory[i])
+			delete this->_inventory[i];
+		if (character._inventory[i])
+			this->_inventory[i] = character._inventory[i]->clone();
+	}			
 	this->_equipedMateria = character._equipedMateria;
 	return *this;
 }
@@ -63,7 +69,7 @@ std::string	const &Character::getName() const
 void	Character::equip(AMateria* m)
 {
 	int	i = -1;
-	if (this->_equipedMateria <= 4)
+	if (this->_equipedMateria < 4)
 	{
 		while (++i < 4)
 		{
@@ -71,10 +77,11 @@ void	Character::equip(AMateria* m)
 			{
 				this->_inventory[i] = m;
 				this->_equipedMateria++;
+				std::cout << "Equipado: " << i << std::endl;
 				break;
 			}
 		}
-		std::cout << "Materia " << m->getType() << " equiped in slot " << i << std::endl; // fallo aqui
+		//std::cout << "Materia " << m->getType() << " equiped in slot " << i << std::endl; // fallo aqui
 	}
 	else
 	{

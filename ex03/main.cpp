@@ -6,7 +6,7 @@
 /*   By: asolano- <asolano-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 10:12:28 by asolano-          #+#    #+#             */
-/*   Updated: 2023/11/06 11:47:18 by asolano-         ###   ########.fr       */
+/*   Updated: 2023/11/07 09:19:47 by asolano-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,18 @@ int main()
 	src->learnMateria(new Cure());
 	ICharacter* me = new Character("me");
 	AMateria* tmp;
+ 	tmp = src->createMateria("ice");
+	me->equip(tmp);
+	tmp = src->createMateria("cure");
+	me->equip(tmp);
+	tmp = src->createMateria("cure");
+	me->equip(tmp);
 	tmp = src->createMateria("ice");
 	me->equip(tmp);
-	std::cout << "hola\n";
 	tmp = src->createMateria("cure");
 	me->equip(tmp);
 	tmp = src->createMateria("cure");
-	me->equip(tmp);
-	tmp = src->createMateria("cure");
-	me->equip(tmp);
-	tmp = src->createMateria("cure");
-	me->equip(tmp);
-	tmp = src->createMateria("cure");
-	me->equip(tmp);
+	me->equip(tmp); 
 	ICharacter* bob = new Character("bob");
 	me->unequip(1);
 	me->use(0, *bob);
