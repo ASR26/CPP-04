@@ -6,7 +6,7 @@
 /*   By: asolano- <asolano-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 08:50:44 by asolano-          #+#    #+#             */
-/*   Updated: 2023/10/24 09:04:26 by asolano-         ###   ########.fr       */
+/*   Updated: 2023/11/07 10:16:20 by asolano-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 class Dog: public Animal
 {
 	private:
-		Brain*	brain;
+		Brain* brain;
 	public:
 		Dog();
 		Dog(const Dog &dog);
